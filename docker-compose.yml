@@ -1,0 +1,15 @@
+---
+version: '2.1'
+
+# See: https://github.com/almenscorner/IntuneCD
+
+services:
+  intunecd:
+    #image: 
+    build: .
+    container_name: intunecd
+    hostname: intunecd
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /tmp:/tmp:rw
+#    command: "-o yaml -p /path/to/save/in -a /path/to/auth_DEV.json/"
