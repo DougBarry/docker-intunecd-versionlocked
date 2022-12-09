@@ -9,7 +9,7 @@ RUN	apt -y install python3-pip && \
 		pip  \
 		setuptools \
 		wheel && \
-	pip3 install pip-tools==6.10.0 && \
+#	pip3 install pip-tools==6.10.0 && \
 	pip3 install pipenv==2022.11.25
 #	pipenv install IntuneCD
 
