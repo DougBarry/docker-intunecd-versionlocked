@@ -23,6 +23,7 @@ Clone this repo to somewhere, and build it with ```docker-compose build```
 ## Usage
 
 I recommend making modifications to the docker-compose.yml file and adding in appropriate command line switches in the ```command:``` section, for your tenancy. Alternatively if you wish to supply information via the environment variables method as per [official documentation](https://github.com/almenscorner/IntuneCD#run-from-a-pipeline) then do so within the ```environment:```section.
+Obviously you can use the ```volume:``` section to map in a json configuration file for IntuneCD, and map in an output folder for the IntuneCD generated documentation.
 
 ## Support
 Please [open an issue](../../issues/new) for support

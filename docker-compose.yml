@@ -12,4 +12,6 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /tmp:/tmp:rw
-#    command: "-o yaml -p /path/to/save/in -a /path/to/auth_DEV.json/"
+      #- /home/intunecd/config/:/config:ro
+      #- /home/intunecd/output/:/output:rw
+    command: "-o yaml -p /output -a /config/auth_DEV.json"
