@@ -1,36 +1,27 @@
-FROM	ubuntu:latest as base
+FROM ubuntu:latest as base
 
-RUN	apt -y update && apt -y upgrade
+RUN	apt-get update -y && apt-get upgrade -y
 
-FROM	base as aptupdated
+FROM base as aptupdated
 
-RUN	apt -y install python3-pip && \
-	pip3 install -U \
-		pip  \
-		setuptools \
-		wheel && \
-#	pip3 install pip-tools==6.10.0 && \
-	pip3 install pipenv==2022.11.25
-#	pipenv install IntuneCD
+RUN	apt-get install -y python3-pip
 
-FROM	aptupdated as pipenvready
+FROM aptupdated as pipready
 
 WORKDIR	/app
 
-COPY	./Pipfile /app
-COPY	./Pipfile.lock /app
+COPY ./requirements.txt /app
 
 RUN	cd /app && \
-	pipenv install
+	pip install --require-hashes --no-deps --prefer-binary -r requirements.txt
 
-FROM	pipenvready as application
+FROM pipready as application
 
 WORKDIR	/app
 
-COPY	./entrypoint.sh /app/entrypoint.sh
-RUN	chmod +x /app/entrypoint.sh
+COPY ./entrypoint.sh /app/entrypoint.sh
 
-FROM	application as final
+FROM application as final
 
 ENV	PYTHONUNBUFFERED=0
 
